@@ -5,13 +5,14 @@ awful.rules = require("awful.rules")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
-vicious = require("vicious")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
-awful.util.spawn_with_shell("xcompmgr &")
+-- User imports
+local battery_widget = require("battery-widget")
+
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -142,22 +143,6 @@ local taglist_buttons = awful.util.table.join(
                     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
                      )
 
-mybatwidget = wibox.widget.textbox()
-vicious.register(mybatwidget, function(format, warg)
-	local args = vicious.widgets.bat(format, warg)
-	if args[2] < 30 then
-		args['{color}'] = 'red'
-	else
-		args['{color}'] = '#DCDDCC'
-	end
-	if args[1] == '+' then
-		args['{state}'] = '▲'
-	else
-		args['{state}'] = '▼'
-	end
-	return args
-end, '<span foreground="${color}">$1$2%</span>', 11, 'BAT0')
-
 local tasklist_buttons = awful.util.table.join(
                       awful.button({ }, 1, function (c)
                                                if c == client.focus then
@@ -191,6 +176,8 @@ local tasklist_buttons = awful.util.table.join(
                                               awful.client.focus.byidx(-1)
                                               if client.focus then client.focus:raise() end
                                           end))
+
+battery = battery_widget({ ac_prefix = " +", battery_prefix = " -", adapter = "BAT0" })
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -226,7 +213,7 @@ awful.screen.connect_for_each_screen(function(s)
      -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(wibox.widget.systray())
-    right_layout:add(mybatwidget)
+    right_layout:add(battery.widget)
     right_layout:add(mytextclock)
     right_layout:add(s.mylayoutbox)
 
@@ -313,7 +300,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "t",     function () os.execute("killall xcompmgr") end), 
 
     -- Prompt
-    awful.key({ modkey },            "r",     function () awful.screen.focused().mypromptbox:run() end),
+    awful.key({ modkey },            "p",     function () awful.screen.focused().mypromptbox:run() end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -325,7 +312,7 @@ globalkeys = awful.util.table.join(
                   }
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "r", function() menubar.show() end)
 )
 
 clientkeys = awful.util.table.join(
@@ -414,11 +401,11 @@ awful.rules.rules = {
     { rule = { class = "XTerm" },
       properties = { opacity = 0.9 } },
     { rule = { class = "st-256color" },
-      properties = { opacity = 0.9 } },
+      properties = { opacity = 0.9, size_hints_honor = false } },
     { rule = { class = "URxvt" },
       properties = { opacity = 0.9 } },
     { rule = { class = "XTerm" },
-      properties = { size_hints_honor = false } },
+      properties = { size_hints_honor = false } },     
     -- Set Firefox to always map on tags number 2 of screen 1.
     --{ rule = { class = "Google-chrome" },
     --properties = { tag = tags[1][4] } },
@@ -505,3 +492,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart
 os.execute("killall nm-applet");
 awful.util.spawn_with_shell("nm-applet &");
+awful.util.spawn_with_shell("xcompmgr &");
