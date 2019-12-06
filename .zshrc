@@ -14,6 +14,8 @@ ZSH_THEME="robbyrussell"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias please='sudo'
+alias kon='kubeon'
+alias koff='kubeoff'
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -33,11 +35,14 @@ alias please='sudo'
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(git kubectl kube-ps1)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
+export PROMPT=$PROMPT'$(kube_ps1) '
+export KUBE_PS1_SYMBOL_ENABLE=false
+export KUBE_PS1_ENABLED=false
 export EDITOR=sublime
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/usr/bin/core_perl:~/.gem/ruby/2.0.0/bin:~/src/android/adt/sdk/tools:~/src/android/adt/sdk/platform-tools
 
