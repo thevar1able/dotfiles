@@ -10,8 +10,9 @@ local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
 local menubar = require("menubar")
+
 -- User imports
-local battery_widget = require("battery-widget")
+-- local battery_widget = require("battery-widget")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -40,10 +41,10 @@ end
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, and wallpapers
-beautiful.init("/usr/share/awesome/themes/thevar1able/theme.lua")
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/thevar1able/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "st"
+terminal = os.getenv("EDITOR") or "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -86,18 +87,6 @@ end
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
-
- -- -- {{{ Tags
- -- -- Define a tag table which will hold all screen tags.
- -- tags = {
- --   names  = { "coding", "vlc", "web", "stuff"},
- --   layout = { layouts[2], layouts[1], layouts[1], layouts[1]
- -- }}
- -- for s = 1, screen.count() do
- --     -- Each screen has its own tag table.
- --     tags[s] = awful.tag(tags.names, s, tags.layout)
- -- end
- -- -- }}}
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
@@ -177,7 +166,8 @@ local tasklist_buttons = awful.util.table.join(
                                               if client.focus then client.focus:raise() end
                                           end))
 
-battery = battery_widget({ ac_prefix = " +", battery_prefix = " -", adapter = "BAT0" })
+-- Don't forget to uncomment battery widget
+-- battery = battery_widget({ ac_prefix = " +", battery_prefix = " -", adapter = "BAT0" })
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -213,7 +203,7 @@ awful.screen.connect_for_each_screen(function(s)
      -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(wibox.widget.systray())
-    right_layout:add(battery.widget)
+--  right_layout:add(battery.widget)
     right_layout:add(mytextclock)
     right_layout:add(s.mylayoutbox)
 
@@ -268,7 +258,7 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 
@@ -283,24 +273,29 @@ globalkeys = awful.util.table.join(
 
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
-    awful.key({ }, "XF86ScreenSaver", function () os.execute("playerctl pause; xscreensaver-command --lock") end),
-
-    --Volume
-    awful.key({ }, "XF86AudioLowerVolume", function () os.execute("amixer -c 0 -q sset Master 2dB-") end),
-    awful.key({ }, "XF86AudioRaiseVolume", function () os.execute("amixer -c 0 -q sset Master 2dB+") end),
-    awful.key({ }, "XF86AudioMute", function () os.execute("amixer sset Master toggle") end),
-    awful.key({ }, "XF86AudioPrev", function () os.execute("playerctl previous") end),
-    awful.key({ }, "XF86AudioNext", function () os.execute("playerctl next") end),
-    awful.key({ }, "XF86AudioPlay", function () os.execute("playerctl play-pause") end),
+    -- Volume
+    awful.key({ modkey,           }, "Prior",                function () awful.spawn("pamixer -i 5", false)                end),
+    awful.key({ modkey,           }, "Next",                 function () awful.spawn("pamixer -d 5", false)                end),
+    awful.key({                   }, "XF86AudioLowerVolume", function () awful.spawn("pamixer --decrease 5")               end),
+    awful.key({                   }, "XF86AudioRaiseVolume", function () awful.spawn("pamixer --increase 5")               end),
+    awful.key({                   }, "XF86AudioMute",        function () awful.spawn("pamixer --toggle-mute")              end),
+    awful.key({                   }, "XF86AudioPrev",        function () awful.spawn("playerctl -p playerctld previous")   end),
+    awful.key({                   }, "XF86AudioNext",        function () awful.spawn("playerctl -p playerctld next")       end),
+    awful.key({                   }, "XF86AudioPlay",        function () awful.spawn("playerctl -p playerctld play-pause") end),
     
-    --Screenshot
-    awful.key({ }, "Print", function () awful.util.spawn_with_shell("sleep 0.1 && scrot -s /tmp/screen-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'") end),
-
-    --Kill transparency
-    awful.key({ modkey, "Control" }, "t",     function () os.execute("killall xcompmgr") end), 
+    -- Lockscreen
+    awful.key({ modkey,           }, "i",      function () awful.spawn.with_shell("i3lock-fancy-rapid 5 3", false) end),
+    
+    -- Player control
+    awful.key({ modkey,           }, "Home",   function () awful.spawn.with_shell("playerctl play-pause", false) end),
+    awful.key({ modkey,           }, "End",    function () awful.spawn.with_shell("playerctl next", false)       end),
+    awful.key({ modkey,           }, "Delete", function () awful.spawn.with_shell("playerctl previous", false)   end),
+    
+    -- Screenshot
+    awful.key({                   }, "Print",  function () awful.spawn.with_shell("sleep 0.1 && scrot -s /tmp/screen-$(date +%F_%T).png -e 'xclip -selection c -t image/png < $f'") end),
 
     -- Prompt
-    awful.key({ modkey },            "p",     function () awful.screen.focused().mypromptbox:run() end),
+    awful.key({ modkey,           }, "p",     function () awful.screen.focused().mypromptbox:run() end),
 
     awful.key({ modkey }, "x",
               function ()
@@ -332,6 +327,38 @@ clientkeys = awful.util.table.join(
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
             c.maximized_vertical   = not c.maximized_vertical
+        end),
+    awful.key({ modkey, "Control" }, "m",
+        function (c)
+            -- Maximize
+            c.width = c.screen.workarea.width
+            c.x = c.screen.workarea.x
+
+            c.height = c.screen.workarea.height
+            c.y = c.screen.workarea.y
+        end),
+    awful.key({ modkey, "Shift"   }, "m",
+        function (c)
+            c.maximized = not c.maximized
+        end),
+
+    awful.key({ modkey, "Shift"   }, "Left",
+        function (c)
+            -- Left half of the screen
+            c.width = c.screen.workarea.width / 2
+            c.x = c.screen.workarea.x
+
+            c.height = c.screen.workarea.height
+            c.y = c.screen.workarea.y
+        end),
+    awful.key({ modkey, "Shift"   }, "Right",
+        function (c)
+            -- Right half of the screen
+            c.width = c.screen.workarea.width / 2
+            c.x = c.screen.workarea.x + c.screen.workarea.width / 2
+
+            c.height = c.screen.workarea.height
+            c.y = c.screen.workarea.y
         end)
 )
 
@@ -392,20 +419,12 @@ awful.rules.rules = {
                      screen = awful.screen.preferred,
                      placement = awful.placement.no_overlap+awful.placement.no_offscreen,
                      buttons = clientbuttons } },
-    { rule = { class = "MPlayer" },
-      properties = { floating = true } },
-    { rule = { class = "pinentry" },
-      properties = { floating = true } },
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "XTerm" },
-      properties = { opacity = 0.9 } },
-    { rule = { class = "st-256color" },
       properties = { opacity = 0.9, size_hints_honor = false } },
-    { rule = { class = "URxvt" },
-      properties = { opacity = 0.9 } },
-    { rule = { class = "XTerm" },
-      properties = { size_hints_honor = false } },     
+    { rule = { class = "st-256color" },
+      properties = { opacity = 0.9, size_hints_honor = false } }, 
     -- Set Firefox to always map on tags number 2 of screen 1.
     --{ rule = { class = "Google-chrome" },
     --properties = { tag = tags[1][4] } },
@@ -488,8 +507,3 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
-
--- Autostart
-os.execute("killall nm-applet");
-awful.util.spawn_with_shell("nm-applet &");
-awful.util.spawn_with_shell("xcompmgr &");
