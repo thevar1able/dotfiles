@@ -1,0 +1,6 @@
+[user]
+    name = Konstantin Bogdnaov
+    email = var1able@var1able.ru
+
+[core]
+    excludesfile = /home/thevar1able/.gitignore_global
