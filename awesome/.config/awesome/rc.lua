@@ -44,7 +44,7 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/thevar1able/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = os.getenv("EDITOR") or "xterm"
+terminal = os.getenv("TERMINAL") or "xterm"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
