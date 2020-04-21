@@ -12,7 +12,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 
 -- User imports
--- local battery_widget = require("battery-widget")
+local battery_widget = require("battery-widget")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -159,7 +159,7 @@ local tasklist_buttons = awful.util.table.join(
                                           end))
 
 -- Don't forget to uncomment battery widget
--- battery = battery_widget({ ac_prefix = " +", battery_prefix = " -", adapter = "BAT0" })
+battery = battery_widget({ ac_prefix = " +", battery_prefix = " -", adapter = "BAT0" })
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -195,7 +195,7 @@ awful.screen.connect_for_each_screen(function(s)
      -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(wibox.widget.systray())
---  right_layout:add(battery.widget)
+    right_layout:add(battery.widget)
     right_layout:add(mytextclock)
     right_layout:add(s.mylayoutbox)
 
