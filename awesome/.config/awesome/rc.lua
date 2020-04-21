@@ -422,9 +422,9 @@ awful.rules.rules = {
     { rule = { class = "gimp" },
       properties = { floating = true } },
     { rule = { class = "XTerm" },
-      properties = { opacity = 0.9, size_hints_honor = false } },
+      properties = { size_hints_honor = false } },
     { rule = { class = "st-256color" },
-      properties = { opacity = 0.9, size_hints_honor = false } }, 
+      properties = { size_hints_honor = false } }, 
     -- Set Firefox to always map on tags number 2 of screen 1.
     --{ rule = { class = "Google-chrome" },
     --properties = { tag = tags[1][4] } },
