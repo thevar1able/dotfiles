@@ -5,8 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "mononoki:size=11:antialias=true:autohint=false";
+static char *font = "DejaVu Sans Mono:size=10:antialias=true:autohint=false";
 static int borderpx = 2;
+float alpha = 0.8;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -183,7 +184,6 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ TERMMOD,              XK_I,           iso14755,       {.i =  0} },
 };
 
 /*
