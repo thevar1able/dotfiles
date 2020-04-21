@@ -3,5 +3,6 @@
 xrdb -load /home/thevar1able/.Xresources
 xmodmap /home/thevar1able/.Xmodmap
 
-xcompmgr &
+picom --experimental-backends -b
+
 exec awesome
