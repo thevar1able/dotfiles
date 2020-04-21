@@ -2,8 +2,8 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # default applications
-export TERMINAL=alacritty
-export TERM=alacritty
+export TERMINAL=st
+export TERM=st-256color
 export EDITOR=nano  # "subl3 -nw"
 export PAGER=less
 
