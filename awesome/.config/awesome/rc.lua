@@ -274,8 +274,8 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Volume
-    awful.key({ modkey,           }, "Prior",                function () awful.spawn("pamixer -i 5", false)                end),
-    awful.key({ modkey,           }, "Next",                 function () awful.spawn("pamixer -d 5", false)                end),
+    awful.key({ modkey,           }, "Next",                 function () awful.spawn("pamixer --decrease 5")               end),
+    awful.key({ modkey,           }, "Prior",                function () awful.spawn("pamixer --increase 5")               end),
     awful.key({                   }, "XF86AudioLowerVolume", function () awful.spawn("pamixer --decrease 5")               end),
     awful.key({                   }, "XF86AudioRaiseVolume", function () awful.spawn("pamixer --increase 5")               end),
     awful.key({                   }, "XF86AudioMute",        function () awful.spawn("pamixer --toggle-mute")              end),
