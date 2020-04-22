@@ -1,3 +1,5 @@
+alias subl="subl3"
+
 # Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
 alias ssh="TERM=xterm-256color ssh"
 
