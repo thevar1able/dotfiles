@@ -13,7 +13,7 @@ ZSH_THEME="robbyrussell"
 
 
 # oh-my-zsh plugins
-plugins=(git docker kubectl kube-ps1 helm pass)
+plugins=(git docker kubectl kube-ps1 helm pass colored-man-pages)
 
 
 # load oh-my-zsh
