@@ -7,7 +7,7 @@
  */
 static char *font = "DejaVu Sans Mono:size=10:antialias=true:autohint=false";
 static int borderpx = 2;
-float alpha = 0.8;
+float alpha = 0.75;
 
 /*
  * What program is execed by st depends of these precedence rules:
