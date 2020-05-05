@@ -19,6 +19,8 @@ float alpha = 0.8;
  */
 static char *shell = "/bin/zsh";
 char *utmp = NULL;
+/* scroll program: to enable use a string like "scroll" */
+char *scroll = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
 /* identification sequence returned in DA and DECID */
@@ -31,9 +33,9 @@ static float chscale = 1.0;
 /*
  * word delimiter string
  *
- * More advanced example: " `'\"()[]{}"
+ * More advanced example: L" `'\"()[]{}"
  */
-char *worddelimiters = " ";
+wchar_t *worddelimiters = L" ";
 
 /* selection timeouts (in milliseconds) */
 static unsigned int doubleclicktimeout = 300;
@@ -61,7 +63,7 @@ static unsigned int cursorthickness = 2;
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
-static int bellvolume = 0;
+static int bellvolume = 50;
 
 /* default TERM value */
 char *termname = "st-256color";
@@ -151,19 +153,24 @@ static unsigned int mousebg = 0;
 static unsigned int defaultattr = 11;
 
 /*
+ * Force mouse select/shortcuts while mask is active (when MODE_MOUSE is set).
+ * Note that if you want to use ShiftMask with selmasks, set this to an other
+ * modifier, set to 0 to not use it.
+ */
+static uint forcemousemod = ShiftMask;
+
+/*
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
  */
+const unsigned int mousescrollincrement = 5;
 static MouseShortcut mshortcuts[] = {
-	/* button               mask            string */
-	{ Button4,              XK_NO_MOD,      "\031" },
-	{ Button5,              XK_NO_MOD,      "\005" },
-};
-
-MouseKey mkeys[] = {
-	/* button               mask            function        argument */
-	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
-	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} },
+	/* mask                 button   function        argument       release */
+	{ ShiftMask,             Button4, ttysend,        {.s = "\031"}               },
+	{ ShiftMask,             Button5, ttysend,        {.s = "\005"}               },
+	{ XK_ANY_MOD,            Button4, kscrollup,      {.i = mousescrollincrement} },
+	{ XK_ANY_MOD,            Button5, kscrolldown,    {.i = mousescrollincrement} },
+	{ XK_ANY_MOD,            Button2, selpaste,       {.i = 0},                 1 },
 };
 
 /* Internal keyboard shortcuts. */
@@ -228,7 +235,7 @@ static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
  * Note that if you want to use ShiftMask with selmasks, set this to an other
  * modifier, set to 0 to not use it.
  */
-static uint forceselmod = ShiftMask;
+static uint forceselmod = 0;
 
 /*
  * This is the huge key array which defines all compatibility to the Linux
