@@ -7,7 +7,7 @@
  */
 static char *font = "DejaVu Sans Mono:size=10:antialias=true:autohint=false";
 static int borderpx = 2;
-float alpha = 0.75;
+float alpha = 0.85;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -98,7 +98,7 @@ static const char *colorname[] = {
 	"#BFBFBF",
 
 	/* 8 bright colors */
-	"#4D4D4D",
+	"#6D6D6D",
 	"#FF6E67",
 	"#5AF78E",
 	"#F4F99D",
@@ -109,7 +109,7 @@ static const char *colorname[] = {
 
 	[255] = 0,
 
-	"#282A36",
+	"#171820",
 	"#F8F8F2",
 };
 
