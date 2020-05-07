@@ -10,7 +10,7 @@ Xft.lcdfilter: lcddefault
 
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
-*.background: #282A36
+*.background: #171820
 
 *.color0:     #000000
 *.color1:     #FF5555
@@ -21,7 +21,7 @@ Xft.lcdfilter: lcddefault
 *.color6:     #8BE9FD
 *.color7:     #BFBFBF
 
-*.color8:     #4D4D4D
+*.color8:     #6D6D6D
 *.color9:     #FF6E67
 *.color10:    #5AF78E
 *.color11:    #F4F99D
