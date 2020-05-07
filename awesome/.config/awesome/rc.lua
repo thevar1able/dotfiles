@@ -284,7 +284,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Delete", function () awful.spawn.with_shell("playerctl previous", false)   end),
     
     -- Screenshot
-    awful.key({                   }, "Print",  function () awful.spawn.with_shell("maim -s | xclip -selection clipboard -t image/png") end),
+    awful.key({                   }, "Print",  function () awful.spawn.with_shell("maim -us | xclip -selection clipboard -t image/png") end),
 
     -- Prompt
     awful.key({ modkey,           }, "p",     function () awful.screen.focused().mypromptbox:run() end),
