@@ -10,12 +10,12 @@ theme.useless_gap = 3
 theme.font      = "sans 8"
 
 -- {{{ Colors
-theme.fg_normal  = "#888888" --"#DCDCCC"
-theme.fg_focus   = "#eeeeee"
-theme.fg_urgent  = "#eeeeee"
-theme.bg_normal  = "#101010"
-theme.bg_focus   = "#101010" --"#101010"
-theme.bg_urgent  = "#101010" --"#3F3F3F"
+theme.fg_normal  = "#BFBFBF" --"#DCDCCC"
+theme.fg_focus   = "#F8F8F2"
+theme.fg_urgent  = "#F8F8F2"
+theme.bg_normal  = "#171820"
+theme.bg_focus   = "#171820" --"#101010"
+theme.bg_urgent  = "#171820" --"#3F3F3F"
 theme.bg_systray = theme.bg_normal
 -- }}}
 
