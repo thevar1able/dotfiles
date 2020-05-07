@@ -14,10 +14,15 @@ pFg: #f8f8f2;
 pComment: #6272a4;
 pCommentHeavy: #455174;
 pCyan: #8be9fd;
+pGreen: #50fa7b;
+pOrange: #ffb86c;
+pPink: #ff79c6;
 pPurple: #bd93f9;
 pRed: #ff5555;
+pYellow: #f1fa8c;
 pAnthracite: #212020;
 pLightGray: #e6e6e6;
+pGray: #bfbfbf;
 
 // Color Vars
 rippleBgHeavy: #ffffff40;
@@ -31,7 +36,7 @@ windowFg: pFg; // Text color etc.
 windowBgOver: pSelection; // Generic bg hover color (random bits and pieces) & Search bar bg
 windowBgRipple: rippleBgLight; // Ripple color (on hover colored items) [te]
 windowFgOver: windowFg; // Text color on hover
-windowSubTextFg: pComment; // Minor text and some labels (version number, last seen, etc.)
+windowSubTextFg: pGray; // Minor text and some labels (version number, last seen, etc.)
 windowSubTextFgOver: pCyan; // Hotkey hover text color?
 windowBoldFg: pLightGray; // Bolded text (headers) [te]
 windowBoldFgOver: windowBoldFg; // windowBoldFg but on hover (idk where used)
@@ -222,20 +227,20 @@ historyForwardChooseBg: pComment;
 historyForwardChooseFg: cWhite;
 historyPeer1NameFg: pRed; // [te]
 historyPeer1UserpicBg: pRed; // [te]
-historyPeer2NameFg: pLightGray; // [te]
-historyPeer2UserpicBg: pLightGray; // [te]
+historyPeer2NameFg: pYellow; // [te]
+historyPeer2UserpicBg: pYellow; // [te]
 historyPeer3NameFg: pLightGray; // [te]
 historyPeer3UserpicBg: pLightGray; // [te]
 historyPeer4NameFg: pCyan; // [te]
 historyPeer4UserpicBg: pCyan; // [te]
 historyPeer5NameFg: pPurple; // [te]
 historyPeer5UserpicBg: pPurple; // [te]
-historyPeer6NameFg: pLightGray; // [te]
-historyPeer6UserpicBg: pLightGray; // [te]
+historyPeer6NameFg: pPink; // [te]
+historyPeer6UserpicBg: pPink; // [te]
 historyPeer7NameFg: pAnthracite; // [te]
 historyPeer7UserpicBg: pAnthracite; // [te]
-historyPeer8NameFg: pLightGray; // [te]
-historyPeer8UserpicBg: pLightGray; // [te]
+historyPeer8NameFg: pOrange; // [te]
+historyPeer8UserpicBg: pOrange; // [te]
 historyPeerUserpicFg: pBg; //  [te]
 historyScrollBarBg: scrollBarBg;
 historyScrollBarBgOver: scrollBarBgOver;
