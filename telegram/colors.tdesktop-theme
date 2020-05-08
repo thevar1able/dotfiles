@@ -91,7 +91,7 @@ smallCloseIconFgOver: pRed; // smallCloseIconFg on hover [te]
 radialFg: pLightGray; // ??? [te]
 radialBg: pSelection; // ??? [te]
 placeholderFg: pSelection; //windowSubTextFg; [te]
-placeholderFgActive: pGray;
+placeholderFgActive: pSelectionHeavy;
 inputBorderFg: pComment; // Input text field undeline when not active
 filterInputBorderFg: pComment; // Search box active border
 checkboxFg: pComment; // checkbox inactive border [te]
@@ -155,7 +155,7 @@ dialogsNameFg: windowBoldFg; // Chat names color
 dialogsChatIconFg: pLightGray; // [te]
 dialogsDateFg: windowSubTextFg;
 dialogsTextFg: windowSubTextFg;
-dialogsTextFgService: windowActiveTextFg;
+dialogsTextFgService: windowSubTextFg;
 dialogsDraftFg: pRed; // Draft label color
 dialogsVerifiedIconBg: pCyan; // verified icon bg [te]
 dialogsVerifiedIconFg: pBg; // verified icon text color [te]
@@ -167,9 +167,9 @@ dialogsUnreadFg: pFg; // [te]
 dialogsBgOver: windowBgOver;
 dialogsNameFgOver: windowBoldFgOver;
 dialogsChatIconFgOver: dialogsChatIconFg;
-dialogsDateFgOver: windowSubTextFgOver;
-dialogsTextFgOver: windowSubTextFgOver;
-dialogsTextFgServiceOver: dialogsTextFgService;
+dialogsDateFgOver: windowSubTextFg;
+dialogsTextFgOver: windowSubTextFg;
+dialogsTextFgServiceOver: windowSubTextFg;
 dialogsDraftFgOver: dialogsDraftFg;
 dialogsVerifiedIconBgOver: dialogsVerifiedIconBg;
 dialogsVerifiedIconFgOver: dialogsVerifiedIconFg;
@@ -181,9 +181,9 @@ dialogsUnreadFgOver: dialogsUnreadFg;
 dialogsBgActive: pSelection;
 dialogsNameFgActive: pLightGray;
 dialogsChatIconFgActive: pLightGray;
-dialogsDateFgActive: windowActiveTextFg;
-dialogsTextFgActive: windowActiveTextFg;
-dialogsTextFgServiceActive: pCyan; // [te]
+dialogsDateFgActive: pLightGray;
+dialogsTextFgActive: pLightGray;
+dialogsTextFgServiceActive: pLightGray; // [te]
 dialogsDraftFgActive: dialogsDraftFg;
 dialogsVerifiedIconBgActive: dialogsVerifiedIconBg;
 dialogsVerifiedIconFgActive: dialogsVerifiedIconFg;
