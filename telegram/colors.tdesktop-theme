@@ -155,7 +155,7 @@ dialogsNameFg: windowBoldFg; // Chat names color
 dialogsChatIconFg: pLightGray; // [te]
 dialogsDateFg: windowSubTextFg;
 dialogsTextFg: windowSubTextFg;
-dialogsTextFgService: windowSubTextFg;
+dialogsTextFgService: pCyan;
 dialogsDraftFg: pRed; // Draft label color
 dialogsVerifiedIconBg: pCyan; // verified icon bg [te]
 dialogsVerifiedIconFg: pBg; // verified icon text color [te]
@@ -169,7 +169,7 @@ dialogsNameFgOver: windowBoldFgOver;
 dialogsChatIconFgOver: dialogsChatIconFg;
 dialogsDateFgOver: windowSubTextFg;
 dialogsTextFgOver: windowSubTextFg;
-dialogsTextFgServiceOver: windowSubTextFg;
+dialogsTextFgServiceOver: pCyan;
 dialogsDraftFgOver: dialogsDraftFg;
 dialogsVerifiedIconBgOver: dialogsVerifiedIconBg;
 dialogsVerifiedIconFgOver: dialogsVerifiedIconFg;
@@ -183,7 +183,7 @@ dialogsNameFgActive: pLightGray;
 dialogsChatIconFgActive: pLightGray;
 dialogsDateFgActive: pLightGray;
 dialogsTextFgActive: pLightGray;
-dialogsTextFgServiceActive: pLightGray; // [te]
+dialogsTextFgServiceActive: pCyan; // [te]
 dialogsDraftFgActive: dialogsDraftFg;
 dialogsVerifiedIconBgActive: dialogsVerifiedIconBg;
 dialogsVerifiedIconFgActive: dialogsVerifiedIconFg;
