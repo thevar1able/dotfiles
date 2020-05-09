@@ -16,7 +16,7 @@ how_in() {
 }
 
 wttr() {
-    local request="https://wttr.in/${1-$_WTTR}?mQF"
+    local request="https://wttr.in/${1-$_WTTR}?mMQF"
     [ "$COLUMNS" -lt 125 ] && request+='n'
     # ${LANG%_*}
     curl -H "Accept-Language: en" --compressed "$request"
