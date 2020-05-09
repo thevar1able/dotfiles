@@ -1,6 +1,11 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+export PATH="$HOME/.bin:$PATH"
+
+# make systemd aware of our "new" PATH
+systemctl --user import-environment PATH
+
 # default applications
 export TERMINAL=st
 export TERM=st-256color
