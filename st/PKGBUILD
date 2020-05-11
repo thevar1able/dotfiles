@@ -30,7 +30,7 @@ prepare() {
   for patch in "${_patches[@]}"; do
     echo "Applying patch $(basename $patch)..."
     patch -Np1 -i "$srcdir/$(basename $patch)"
-  done  
+  done
 }
 
 build() {
