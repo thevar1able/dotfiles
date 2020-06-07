@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# Handles i3lock theming, display sleep and keyboard layout switching.
+
+run_i3lock() {
+    background=0d0d1233  # 00000011
+
+    i3lock --color $background \
+           --screen 1 \
+           \
+           --radius 50 \
+           --ringcolor 00000000 \
+           --linecolor 00000000 \
+           \
+           --insidecolor 00000000 \
+           --separatorcolor 00000000 \
+           --keyhlcolor 5af78ecc \
+           --bshlcolor ff6e67cc \
+           \
+           --insidevercolor 9aedfe88 \
+           --verifcolor 9aedfe88 \
+           --ringvercolor 00000000 \
+           --veriftext "" \
+           \
+           --insidewrongcolor ff5555cc \
+           --wrongcolor ff5555cc \
+           --ringwrongcolor 00000000 \
+           --wrongtext "" \
+           \
+           --locktext "" \
+           --noinputtext "" \
+           \
+           --pass-media-keys \
+           --nofork \
+           "$@"
+}
+
+revert() {
+    xset dpms 0 0 0
+}
+
+trap revert HUP INT TERM
+
+xset +dpms dpms 15 15 15
+
+xkb-switch -s us
+run_i3lock
+
+revert
