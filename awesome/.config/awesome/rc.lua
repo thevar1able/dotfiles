@@ -276,7 +276,7 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "XF86AudioPlay",        function () awful.spawn("playerctl -p playerctld play-pause") end),
     
     -- Lockscreen
-    awful.key({ modkey,           }, "i",      function () awful.spawn.with_shell("i3lock-fancy-rapid 5 3", false) end),
+    awful.key({ modkey,           }, "i",      function () awful.spawn.with_shell("i3lock-wrapper", false) end),
     
     -- Player control
     awful.key({ modkey,           }, "Home",   function () awful.spawn.with_shell("playerctl play-pause", false) end),
@@ -416,14 +416,7 @@ awful.rules.rules = {
     { rule = { class = "XTerm" },
       properties = { size_hints_honor = false } },
     { rule = { class = "st-256color" },
-      properties = { size_hints_honor = false } }, 
-    -- Set Firefox to always map on tags number 2 of screen 1.
-    --{ rule = { class = "Google-chrome" },
-    --properties = { tag = tags[1][4] } },
-    --{ rule = { class = "Vlc" },
-    --properties = { tag = tags[1][6] } },
-    --{ rule = { class = "Sublime" },
-    --properties = { tag = tags[1][2] } },
+      properties = { size_hints_honor = false } },
 }
 -- }}}
 
