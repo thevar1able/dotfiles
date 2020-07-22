@@ -1,5 +1,5 @@
 pkgname=st
-pkgver=0.8.3
+pkgver=0.8.4
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X.'
 arch=('i686' 'x86_64')
