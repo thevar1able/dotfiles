@@ -1,0 +1,7 @@
+﻿[qt] # Qt interface
+qt-privacy-ask=0
+
+[core] # core program
+audio-language=eng,jpn,rus
+sub-language=en,ru
+metadata-network-access=1
