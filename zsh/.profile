@@ -9,7 +9,7 @@ systemctl --user import-environment PATH
 # default applications
 export TERMINAL=st
 export TERM=st-256color
-export EDITOR=nano  # "subl3 -nw"
+export EDITOR=nvim  # "subl3 -nw"
 export PAGER=less
 
 # load private environment variables
