@@ -13,13 +13,11 @@ export EDITOR=nvim  # "subl3 -nw"
 export PAGER=less
 
 # start ssh-agent
-eval "$(ssh-agent -s)"
-trap 'test -n "$SSH_AUTH_SOCK" && eval "`/usr/bin/ssh-agent -k`"' 0
+unset SSH_AGENT_PID
 
-if [ -f "/usr/lib/seahorse/ssh-askpass" ] ; then
-  export SSH_ASKPASS="/usr/lib/seahorse/ssh-askpass"
-elif [ -f "/usr/lib/ssh/ssh-askpass" ] ; then
-  export SSH_ASKPASS="/usr/lib/ssh/ssh-askpass"
+if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
 
 # load private environment variables
