@@ -13,7 +13,15 @@ ZSH_THEME="robbyrussell"
 
 
 # oh-my-zsh plugins
-plugins=(git docker kubectl kube-ps1 helm pass colored-man-pages)
+plugins=(
+  git
+  docker
+  kubectl
+  kube-ps1
+  helm
+  pass
+  colored-man-pages
+)
 
 
 # load oh-my-zsh
@@ -36,7 +44,10 @@ alias koff="kubeoff"
 
 # fish-like syntax highlighting
 # requires 'zsh-syntax-highlighting' package
-sources=(/usr/share/{,zsh/plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh)
+sources=(
+  /usr/share/{,zsh/plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  /usr/share/{,zsh/plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
+)
 for src in $sources; do
    [[ -e "$src" ]] && source "$src"
 done
