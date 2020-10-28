@@ -42,10 +42,15 @@ alias koff="kubeoff"
 [[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
 
-# fish-like syntax highlighting
-# requires 'zsh-syntax-highlighting' package
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_USE_ASYNC=true
 sources=(
+  # fish-like syntax highlighting
+  # requires 'zsh-syntax-highlighting' package
   /usr/share/{,zsh/plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+  # fish-like autosuggests from history and completion
+  # requires 'zsh-autosuggestions' package
   /usr/share/{,zsh/plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
 )
 for src in $sources; do
