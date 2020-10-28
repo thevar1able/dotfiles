@@ -21,6 +21,7 @@ plugins=(
   helm
   pass
   colored-man-pages
+  fzf
 )
 
 
