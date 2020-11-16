@@ -12,14 +12,6 @@ export TERM=st-256color
 export EDITOR=nvim  # "subl3 -nw"
 export PAGER=less
 
-# start ssh-agent
-unset SSH_AGENT_PID
-
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  gpg-connect-agent updatestartuptty /bye >/dev/null
-fi
-
 # load private environment variables
 [ -f ~/.profile-private ] && source ~/.profile-private
 
