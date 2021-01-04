@@ -12,7 +12,11 @@
 	process = git-lfs filter-process
 	required = true
 
-[url "ssh://git@github.com/"]
+[url "git://github.com/"]
 	insteadOf = https://github.com/
+
 [pull]
 	ff = only
+
+[commit]
+	gpgsign = true
