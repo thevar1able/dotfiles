@@ -1,5 +1,3 @@
-# source all .zsh files in that folder
-# order shouldn't matter
 sources=($HOME/zshrc/*.zsh)
 for src in $sources; do
     source "$src"
@@ -7,31 +5,35 @@ done
 unset sources src
 
 
+# If you come from bash you might have to change your $PATH.
+eval $(/opt/homebrew/bin/brew shellenv)
+export PATH=$HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
-# Do not beep, ZSH
-unsetopt BEEP
-
-
-# oh-my-zsh plugins
 plugins=(
   git
   docker
   kubectl
   kube-ps1
-  helm
   pass
   colored-man-pages
   fzf
+  aws
   ripgrep
   aws
 )
 
-
 # load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
+
+
+# Load site-functions from Homebrew
+if (( ! ${fpath[(I)/opt/homebrew/share/zsh/site-functions]} )); then
+  FPATH=/opt/homebrew/share/zsh/site-functions:$FPATH
+fi
 
 
 # kube-ps1 config
@@ -42,10 +44,6 @@ export KUBE_PS1_SUFFIX=') '
 
 alias kon="kubeon"
 alias koff="kubeoff"
-
-
-# "command not found" hook to search package list
-[[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -64,11 +62,11 @@ sources=(
 
   # fish-like syntax highlighting
   # requires 'zsh-syntax-highlighting' package
-  /usr/share/{,zsh/plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
   # fish-like autosuggests from history and completion
   # requires 'zsh-autosuggestions' package
-  /usr/share/{,zsh/plugins}/zsh-autosuggestions/zsh-autosuggestions.zsh
+  /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 )
 for src in $sources; do
    [[ -e "$src" ]] && source "$src"
