@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+
+import os
+import pulsectl
+import subprocess
+
+
+HEADER="Pulse Helper"
+MUTE_ICON=f"{os.environ['HOME']}/.bin/mute.svg"
+NO_MUTE_ICON=f"{os.environ['HOME']}/.bin/speaker.svg"
+MICROPHONE="alsa_input.usb-Audio_Technica_Corp_ATR2500x-USB_Microphone-00.analog-stereo"
+
+pclient = pulsectl.Pulse()
+notify_command_template = [
+	"notify-send",
+	HEADER,
+	"-t", "3000",
+]
+
+mic = pclient.get_source_by_name(MICROPHONE)
+
+
+if mic.mute:
+	icon = NO_MUTE_ICON
+	text = "Unmuted"
+else:
+	icon = MUTE_ICON
+	text = "Muted"
+
+subprocess.Popen(notify_command_template + [f"--icon", icon, text])
+pclient.mute(mic, not mic.mute)

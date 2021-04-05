@@ -211,9 +211,9 @@ end)
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    --awful.button({ }, 3, function () mymainmenu:toggle() end),
-    awful.button({ }, 4, awful.tag.viewnext),
-    awful.button({ }, 5, awful.tag.viewprev)
+    -- awful.button({ }, 3, function () mymainmenu:toggle() end),
+    -- awful.button({ }, 4, awful.tag.viewnext),
+    -- awful.button({ }, 5, awful.tag.viewprev)
 ))
 -- }}}
 
@@ -282,6 +282,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Home",   function () awful.spawn.with_shell("playerctl play-pause", false) end),
     awful.key({ modkey,           }, "End",    function () awful.spawn.with_shell("playerctl next", false)       end),
     awful.key({ modkey,           }, "Delete", function () awful.spawn.with_shell("playerctl previous", false)   end),
+    awful.key({ modkey,           }, "Insert", function () awful.spawn.with_shell("microphone-toggle", false)    end),
     
     -- Screenshot
     awful.key({                   }, "Print",  function () awful.spawn.with_shell("maim -us | xclip -selection clipboard -t image/png") end),
@@ -299,7 +300,7 @@ globalkeys = awful.util.table.join(
                   }
               end),
     -- Menubar
-    awful.key({ modkey }, "r", function() menubar.show() end)
+    awful.key({ modkey }, "r", function() awful.spawn("xkb-switch -s us"); menubar.show() end)
 )
 
 clientkeys = awful.util.table.join(

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+HEADER="AirPods Helper"
+ICON="$HOME/.bin/airpods.svg"
+
+notify-send \
+	"$HEADER" \
+	"Connecting to 14:87:6A:13:20:A2" \
+	--expire-time 1000 \
+	--icon ~/.bin/airpods.svg
+
+bluetoothctl connect 14:87:6A:13:20:A2
+
+if [ $? -eq 0 ]; then
+	notify-send \
+		"$HEADER" \
+		"Connected!" \
+		--expire-time 3000 \
+		--icon "$ICON"
+
+	sleep 4
+
+	pulse-airpods
+else
+	notify-send \
+		"$HEADER" \
+		"Failed" \
+		--expire-time 5000 \
+		--icon "$ICON"
+fi
+
