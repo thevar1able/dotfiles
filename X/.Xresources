@@ -5,7 +5,7 @@ xterm*utf8: 1
 XTerm*locale: true
 
 Xft*antialiasing: true
-Xft.dpi: 96
+Xft.dpi: 168
 Xft.lcdfilter: lcddefault
 
 ! Dracula Xresources palette
