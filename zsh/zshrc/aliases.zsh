@@ -21,3 +21,10 @@ wttr() {
     # ${LANG%_*}
     curl -H "Accept-Language: en" --compressed "$request"
 }
+
+fay() {
+    yay -Slq | fzf --multi --preview 'yay -Si {1}' | xargs -ro sudo yay -S}
+
+faru() {
+    paru -Slq | fzf --multi --preview 'paru -Si {1}' | xargs -ro sudo paru -S
+}
