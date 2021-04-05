@@ -22,6 +22,8 @@ plugins=(
   pass
   colored-man-pages
   fzf
+  ripgrep
+  aws
 )
 
 
@@ -45,6 +47,9 @@ alias koff="kubeoff"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
+
+FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
 sources=(
   # fish-like syntax highlighting
   # requires 'zsh-syntax-highlighting' package
