@@ -3,7 +3,7 @@
 HEADER="Pulse Helper"
 ICON="$HOME/.bin/speaker.svg"
 
-HEADPHONES="alsa_output.pci-0000_08_00.6.analog-stereo"
+HEADPHONES="alsa_output.pci-0000_09_00.4.analog-stereo"
 AIRPODS="bluez_sink.14_87_6A_13_20_A2.a2dp_sink"
 SONOS="speakerssonosonemediarenderer_dlna"
 
