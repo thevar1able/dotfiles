@@ -1,3 +1,6 @@
 [submodule "config/awesome/battery-widget"]
 	path = awesome/.config/awesome/battery-widget
 	url = https://github.com/deficient/battery-widget
+[submodule "zsh/plugins/fzf-tab"]
+	path = zsh/plugins/fzf-tab
+	url = https://github.com/Aloxaf/fzf-tab
