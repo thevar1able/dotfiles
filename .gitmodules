@@ -4,3 +4,6 @@
 [submodule "zsh/plugins/fzf-tab"]
 	path = zsh/plugins/fzf-tab
 	url = https://github.com/Aloxaf/fzf-tab
+[submodule "zsh/plugins/zlong_alert.zsh"]
+	path = zsh/plugins/zlong_alert.zsh
+	url = https://github.com/kevinywlui/zlong_alert.zsh
