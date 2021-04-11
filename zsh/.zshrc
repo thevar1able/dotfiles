@@ -53,6 +53,9 @@ FZF_DEFAULT_OPTS="--layout=reverse"
 
 
 sources=(
+  # Replace zsh's default completion selection menu with fzf!
+  /home/thevar1able/.dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+
   # fish-like syntax highlighting
   # requires 'zsh-syntax-highlighting' package
   /usr/share/{,zsh/plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
