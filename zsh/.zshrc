@@ -49,6 +49,8 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+FZF_DEFAULT_OPTS="--layout=reverse"
+
 
 sources=(
   # fish-like syntax highlighting
