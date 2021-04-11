@@ -11,6 +11,9 @@ unset sources src
 ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
+# Do not beep, ZSH
+unsetopt BEEP
+
 
 # oh-my-zsh plugins
 plugins=(
@@ -54,7 +57,10 @@ FZF_DEFAULT_OPTS="--layout=reverse"
 
 sources=(
   # Replace zsh's default completion selection menu with fzf!
-  /home/thevar1able/.dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+  ./.dotfiles/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
+
+  # hook for long jobs
+  ./.dotfiles/zsh/plugins/zlong_alert.zsh/zlong_alert.zsh
 
   # fish-like syntax highlighting
   # requires 'zsh-syntax-highlighting' package
