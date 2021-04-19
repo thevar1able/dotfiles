@@ -15,9 +15,8 @@ export EDITOR=nvim  # "subl3 -nw"
 # -F = Don't open with less if entire file fits on screen.
 # -R = Output "raw" control characters. (colors)
 # -s = Squeeze multiple blank lines.
-# -X = Ignore ignore termcap initialization.
 export PAGER=less
-export LESS="-Rx4sXF"
+export LESS="-Rx4sF"
 # nicer highlighting
 if [ -f "/usr/share/source-highlight/src-hilite-lesspipe.sh" ]; then
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
