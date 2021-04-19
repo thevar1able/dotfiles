@@ -8,4 +8,7 @@ xset b 100
 
 picom --experimental-backends -b
 
+systemctl --user import-environment DISPLAY
+systemctl --user restart pulseaudio &
+
 exec awesome
