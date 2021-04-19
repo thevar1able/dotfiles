@@ -72,7 +72,7 @@ static unsigned int cursorthickness = 2;
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
-static int bellvolume = 50;
+static int bellvolume = 0;
 
 /* default TERM value */
 char *termname = "st-256color";
@@ -175,11 +175,11 @@ static uint forcemousemod = ShiftMask;
 const unsigned int mousescrollincrement = 5;
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
-	{ ShiftMask,             Button4, ttysend,        {.s = "\031"}               },
-	{ ShiftMask,             Button5, ttysend,        {.s = "\005"}               },
-	{ XK_ANY_MOD,            Button4, kscrollup,      {.i = mousescrollincrement} },
-	{ XK_ANY_MOD,            Button5, kscrolldown,    {.i = mousescrollincrement} },
-	{ XK_ANY_MOD,            Button2, selpaste,       {.i = 0},                 1 },
+	{ XK_ANY_MOD,           Button4, kscrollup,      {.i = mousescrollincrement},      0, /* !alt */ -1 },
+	{ XK_ANY_MOD,           Button5, kscrolldown,    {.i = mousescrollincrement},      0, /* !alt */ -1 },
+	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
+	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031\031\031\031"} },
+	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005\005\005\031"} },
 };
 
 /* Internal keyboard shortcuts. */
