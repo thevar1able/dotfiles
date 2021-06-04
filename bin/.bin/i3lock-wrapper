@@ -9,26 +9,26 @@ run_i3lock() {
            --screen 1 \
            \
            --radius 50 \
-           --ringcolor 00000000 \
-           --linecolor 00000000 \
+           --ring-color 00000000 \
+           --line-color 00000000 \
            \
-           --insidecolor 00000000 \
-           --separatorcolor 00000000 \
-           --keyhlcolor 5af78ecc \
-           --bshlcolor ff6e67cc \
+           --inside-color 00000000 \
+           --separator-color 00000000 \
+           --keyhl-color 5af78ecc \
+           --bshl-color ff6e67cc \
            \
-           --insidevercolor 9aedfe88 \
-           --verifcolor 9aedfe88 \
-           --ringvercolor 00000000 \
-           --veriftext "" \
+           --insidever-color 9aedfe88 \
+           --verif-color 9aedfe88 \
+           --ringver-color 00000000 \
+           --verif-text "" \
            \
-           --insidewrongcolor ff5555cc \
-           --wrongcolor ff5555cc \
-           --ringwrongcolor 00000000 \
-           --wrongtext "" \
+           --insidewrong-color ff5555cc \
+           --wrong-color ff5555cc \
+           --ringwrong-color 00000000 \
+           --wrong-text "" \
            \
-           --locktext "" \
-           --noinputtext "" \
+           --lock-text "" \
+           --noinput-text "" \
            \
            --pass-media-keys \
            --nofork \
