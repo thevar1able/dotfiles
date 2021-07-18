@@ -1,7 +1,6 @@
 [user]
 	name = Konstantin Bogdnaov
-	email = var1able@var1able.ru
-	signingkey = 32217A73EB950E9EE55036A3DB399448D9FE52F1
+	email = konstantin-b@yandex-team.ru
 
 [core]
 	excludesfile = /home/thevar1able/.gitignore_global
