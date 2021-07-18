@@ -12,9 +12,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 
-" Python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
 " Language servers
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -59,6 +56,10 @@ let g:lightline = { 'colorscheme': 'darcula' }
 
 " Unindent in Insert with Shift-Tab
 :inoremap <S-Tab> <C-d>
+
+" Select from Insert
+:inoremap <S-Left> <Esc>vb
+:inoremap <S-Right> <Esc>ve
 
 " Ctrl-Z to undo
 :inoremap <C-z> <Esc>ui
