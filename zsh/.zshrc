@@ -7,7 +7,7 @@ unset sources src
 
 # If you come from bash you might have to change your $PATH.
 eval $(/opt/homebrew/bin/brew shellenv)
-export PATH=$HOME/bin:/opt/homebrew/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.cargo/bin:/opt/homebrew/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 ZSH=$HOME/.oh-my-zsh
@@ -33,6 +33,9 @@ source $ZSH/oh-my-zsh.sh
 # Load site-functions from Homebrew
 if (( ! ${fpath[(I)/opt/homebrew/share/zsh/site-functions]} )); then
   FPATH=/opt/homebrew/share/zsh/site-functions:$FPATH
+
+  autoload -Uz compinit
+  compinit
 fi
 
 
@@ -67,6 +70,9 @@ sources=(
   # fish-like autosuggests from history and completion
   # requires 'zsh-autosuggestions' package
   /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+  # yc-cli completions
+  /opt/homebrew/Caskroom/yandex-cloud-cli/latest/yandex-cloud-cli/completion.zsh.inc
 )
 for src in $sources; do
    [[ -e "$src" ]] && source "$src"
