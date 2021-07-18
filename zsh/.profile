@@ -1,7 +1,7 @@
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.bin:/opt/yandex:$PATH"
 
 # make systemd aware of our "new" PATH
 systemctl --user import-environment PATH
