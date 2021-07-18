@@ -12,8 +12,8 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
 Plug 'jiangmiao/auto-pairs'
 
-" Python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Language servers
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
