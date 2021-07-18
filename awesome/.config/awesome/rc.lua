@@ -12,7 +12,7 @@ local naughty = require("naughty")
 local menubar = require("menubar")
 
 -- User imports
--- local battery_widget = require("battery-widget")
+local battery_widget = require("battery-widget")
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
@@ -159,7 +159,7 @@ local tasklist_buttons = awful.util.table.join(
                                           end))
 
 -- Don't forget to uncomment battery widget
--- battery = battery_widget({ ac_prefix = " +", battery_prefix = " -", adapter = "BAT0" })
+battery = battery_widget({ ac_prefix = " +", battery_prefix = " -", adapter = "BAT0" })
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
@@ -195,7 +195,7 @@ awful.screen.connect_for_each_screen(function(s)
      -- Widgets that are aligned to the right
     local right_layout = wibox.layout.fixed.horizontal()
     right_layout:add(wibox.widget.systray())
---  right_layout:add(battery.widget)
+    right_layout:add(battery.widget)
     right_layout:add(mytextclock)
     right_layout:add(s.mylayoutbox)
 
@@ -274,6 +274,8 @@ globalkeys = awful.util.table.join(
     awful.key({                   }, "XF86AudioPrev",        function () awful.spawn("playerctl -p playerctld previous")   end),
     awful.key({                   }, "XF86AudioNext",        function () awful.spawn("playerctl -p playerctld next")       end),
     awful.key({                   }, "XF86AudioPlay",        function () awful.spawn("playerctl -p playerctld play-pause") end),
+    awful.key({                   }, "XF86MonBrightnessUp",        function () awful.spawn("xbacklight -inc 5") end),
+    awful.key({                   }, "XF86MonBrightnessDown",      function () awful.spawn("xbacklight -dec 5") end),
     
     -- Lockscreen
     awful.key({ modkey,           }, "i",      function () awful.spawn.with_shell("i3lock-wrapper", false) end),
@@ -420,6 +422,63 @@ awful.rules.rules = {
       properties = { size_hints_honor = false } },
 }
 -- }}}
+
+
+-- Save and restore tags, when monitor setup is changed
+local tag_store = {}
+tag.connect_signal("request::screen", function(t)
+  local fallback_tag = nil
+
+  -- find tag with same name on any other screen
+  for other_screen in screen do
+    if other_screen ~= t.screen then
+      fallback_tag = awful.tag.find_by_name(other_screen, t.name)
+      if fallback_tag ~= nil then
+        break
+      end
+    end
+  end
+
+  -- no tag with same name exists, chose random one
+  if fallback_tag == nil then
+    fallback_tag = awful.tag.find_fallback()
+  end
+
+  if not (fallback_tag == nil) then
+    local output = next(t.screen.outputs)
+
+    if tag_store[output] == nil then
+      tag_store[output] = {}
+    end
+
+    clients = t:clients()
+    tag_store[output][t.name] = clients
+
+    for _, c in ipairs(clients) do
+      c:move_to_tag(fallback_tag)
+    end
+  end
+end)
+
+screen.connect_signal("added", function(s)
+  local output = next(s.outputs)
+  naughty.notify({ text = output .. " Connected" })
+
+  tags = tag_store[output]
+  if not (tags == nil) then
+    naughty.notify({ text = "Restoring Tags" })
+
+    for _, tag in ipairs(s.tags) do
+      clients = tags[tag.name]
+      if not (clients == nil) then
+        for _, client in ipairs(clients) do
+          client:move_to_tag(tag)
+        end
+      end
+    end
+  end
+end)
+
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
