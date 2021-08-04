@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# set -x
+
+WATCH_LOG=$(mktemp)
+kubectl get pods --watch $1 -o json >> ${WATCH_LOG} &
+WATCH_PID=$!
+
+while [ ! -s ${WATCH_LOG} ]; do
+    echo -ne '\rWaiting for events...   '
+    sleep .2
+done
+echo -ne 'done'
+
+is_pod_deleted() {
+    POD_DELETION_TIMESTAMP=$(cat ${WATCH_LOG} | jq -r '.metadata.deletionTimestamp' | tail -n1)
+    if [[ ${POD_DELETION_TIMESTAMP} == 'null' ]]; then
+        return 1
+    fi
+    return 0
+}
+
+check_if_pod_ready() {
+    POD_READY_STATUS=$(cat ${WATCH_LOG} | jq -r '.status | select(.conditions != null) | .conditions[] | select(.type == "Ready") | .status' | tail -n1)
+    if [[ ${POD_READY_STATUS} == 'True' ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+attach() {
+    echo
+    kill $WATCH_PID
+    exec kubectl logs --follow $@
+}
+
+if ! is_pod_deleted; then
+    attach $@
+fi
+
+echo
+while is_pod_deleted || ! check_if_pod_ready; do
+    echo -ne "\033[2K\r${POD_READY_STATUS} :: ${POD_DELETION_TIMESTAMP}"
+    sleep 1
+done
+
+attach $@
