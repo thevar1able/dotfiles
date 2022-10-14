@@ -14,6 +14,12 @@ ZSH_THEME="robbyrussell"
 # Do not beep, ZSH
 unsetopt BEEP
 
+# Start tmux
+if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then 
+    ZSH_TMUX_AUTOSTART=true
+    ZSH_TMUX_AUTOCONNECT=false 
+fi
+ZSH_TMUX_CONFIG="$HOME/.config/tmux/tmux.conf"
 
 # oh-my-zsh plugins
 plugins=(
@@ -27,6 +33,7 @@ plugins=(
   fzf
   ripgrep
   aws
+  tmux
 )
 
 
@@ -47,13 +54,14 @@ alias koff="kubeoff"
 # "command not found" hook to search package list
 [[ -e /usr/share/doc/pkgfile/command-not-found.zsh ]] && source /usr/share/doc/pkgfile/command-not-found.zsh
 
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_USE_ASYNC=true
 
 FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 FZF_DEFAULT_OPTS="--layout=reverse"
-
 
 sources=(
   # Replace zsh's default completion selection menu with fzf!
