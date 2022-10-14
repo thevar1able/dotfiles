@@ -1,5 +1,5 @@
 pkgname=st
-pkgver=0.8.4
+pkgver=0.9
 pkgrel=1
 pkgdesc='A simple virtual terminal emulator for X.'
 arch=('i686' 'x86_64')
@@ -7,17 +7,11 @@ license=('MIT')
 depends=('libxft' 'libxext' 'xorg-fonts-misc')
 makedepends=('ncurses')
 url="http://st.suckless.org"
-_patches=(st-alpha-0.8.2.diff
-          st-scrollback-20201205-4ef0cbd.diff
-          st-scrollback-mouse-20191024-a2c479c.diff
-          st-scrollback-mouse-altscreen-20200416-5703aa0.diff)
+_patches=(st-alpha-20220206-0.8.5.diff)
 source=(http://dl.suckless.org/st/$pkgname-$pkgver.tar.gz
         config.h
         ${_patches[@]})
 sha256sums=(SKIP
-            SKIP
-            SKIP
-            SKIP
             SKIP
             SKIP)
 

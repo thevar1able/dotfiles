@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "DejaVu Sans Mono:size=12:antialias=true:autohint=true";
+static char *font = "PragmataPro Mono Liga:style=Regular:size=13:antialias=true:autohint=true";
 static int borderpx = 2;
 float alpha = 0.85;
 
@@ -129,7 +129,7 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 257;
 unsigned int defaultbg = 256;
-static unsigned int defaultcs = 257;
+unsigned int defaultcs = 257;
 static unsigned int defaultrcs = 256;
 
 /*
@@ -175,8 +175,8 @@ static uint forcemousemod = ShiftMask;
 const unsigned int mousescrollincrement = 5;
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
-	{ XK_ANY_MOD,           Button4, kscrollup,      {.i = mousescrollincrement},      0, /* !alt */ -1 },
-	{ XK_ANY_MOD,           Button5, kscrolldown,    {.i = mousescrollincrement},      0, /* !alt */ -1 },
+	/* { XK_ANY_MOD,           Button4, kscrollup,      {.i = mousescrollincrement},      0, /1* !alt *1/ -1 }, */
+	/* { XK_ANY_MOD,           Button5, kscrolldown,    {.i = mousescrollincrement},      0, /1* !alt *1/ -1 }, */
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031\031\031\031"} },
 	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005\005\005\031"} },
