@@ -10,30 +10,40 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-unimpaired'
-Plug 'jiangmiao/auto-pairs'
 
-" Python
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" fzf
+Plug 'junegunn/fzf.vim'
+
+" Rust
+Plug 'rust-lang/rust.vim'
 
 " Language servers
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Tab autocompletion remap
-Plug 'ervandew/supertab'
 
 call plug#end()
 
 :colorscheme nord
 let g:lightline = { 'colorscheme': 'darcula' }
 
-" let g:deoplete#enable_at_startup = 1
+" Coc configuration
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-" let g:airline_powerline_fonts = 1
-" 
-" if !exists('g:airline_symbols')
-"     let g:airline_symbols = {}
-" endif
- 
+inoremap <silent><expr> <c-space> coc#refresh()
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " Comment on Ctrl+/
 :vmap  <Plug>Commentary
 :nmap  gcc
@@ -45,11 +55,6 @@ let g:lightline = { 'colorscheme': 'darcula' }
 " Tab configuration
 :set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 :autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-" Unimpared configuration
-" Move lines with Ctrl+Shift+<arrow>
-:nmap <C-S-Up> <Plug>unimpairedMoveUp
-:nmap <C-S-Down> <Plug>unimpairedMoveDown
 
 " turn off `-- INSERT --`
 :set noshowmode
@@ -67,17 +72,6 @@ let g:lightline = { 'colorscheme': 'darcula' }
 :set clipboard=unnamed
 :vnoremap <C-c> y 
 :vnoremap <LeftRelease> ygv
-
-" Remap visual block like in Sublime Text
-:noremap <S-Up> <S-v>
-:noremap <S-Down> <S-v>
-:vmap <S-Up> <Up>
-:vmap <S-Down> <Down>
-
-" Use Tab for autocompletion
-" Reverse Tab completion order
-" tpope 
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " Enable mouse support
 :set mouse=a
