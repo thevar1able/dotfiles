@@ -1,5 +1,5 @@
 [user]
-	name = Konstantin Bogdnaov
+	name = Konstantin Bogdanov
 	email = var1able@var1able.ru
 	signingkey = 32217A73EB950E9EE55036A3DB399448D9FE52F1
 
@@ -11,9 +11,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-
-[url "git://github.com/"]
-	insteadOf = https://github.com/
 
 [pull]
 	ff = only
