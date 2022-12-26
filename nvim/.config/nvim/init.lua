@@ -1,3 +1,4 @@
+local golangci_lint_ls = require "lspconfig.server_configurations.golangci_lint_ls"
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -325,6 +326,9 @@ local servers = {
   gopls = {},
   pyright = {},
   rust_analyzer = {},
+  bashls = {},
+  dockerls = {},
+  golangci_lint_ls = {},
 
   sumneko_lua = {
     Lua = {
