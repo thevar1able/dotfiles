@@ -1,6 +1,10 @@
 # Needed when ssh-ing to servers without my terminal's terminfo (alacritty and termite)
 alias ssh="TERM=xterm-256color ssh"
 
+mp4convert() {
+  ffmpeg -i "${1}" -c:v h264_videotoolbox -c:a aac "${1}.mp4"
+}
+
 cheat() {
     # https://github.com/chubin/cheat.sh
     # `cheat tool` or `cheat language/term+with+pluses[/1..]` (append number for next result)
