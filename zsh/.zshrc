@@ -73,8 +73,13 @@ sources=(
 
   # yc-cli completions
   /opt/homebrew/Caskroom/yandex-cloud-cli/latest/yandex-cloud-cli/completion.zsh.inc
+
+  # Nix 
+  /Users/thevar1able/.nix-profile/etc/profile.d/nix.sh
 )
+
 for src in $sources; do
    [[ -e "$src" ]] && source "$src"
 done
 unset sources src
+if [ -e /Users/thevar1able/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/thevar1able/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
