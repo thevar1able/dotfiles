@@ -41,7 +41,7 @@ revert() {
 
 trap revert HUP INT TERM
 
-xset +dpms dpms 15 15 15
+xset +dpms dpms 45 45 45
 
 xkb-switch -s us
 run_i3lock
