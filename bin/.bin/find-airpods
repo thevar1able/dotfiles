@@ -5,12 +5,12 @@ ICON="$HOME/.bin/airpods.svg"
 
 notify-send \
 	"$HEADER" \
-	"Connecting to 14:87:6A:13:20:A2" \
+	"Connecting to 90:9C:4A:DF:AC:99" \
 	--expire-time 1000 \
 	--icon ~/.bin/airpods.svg
 
-bluetooth power on
-bluetoothctl connect 14:87:6A:13:20:A2
+bluetoothctl power on
+bluetoothctl connect 90:9C:4A:DF:AC:99
 
 if [ $? -eq 0 ]; then
 	notify-send \

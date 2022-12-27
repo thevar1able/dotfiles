@@ -3,8 +3,8 @@
 HEADER="Pulse Helper"
 ICON="$HOME/.bin/speaker.svg"
 
-HEADPHONES="alsa_output.pci-0000_09_00.4.analog-stereo"
-AIRPODS="bluez_sink.14_87_6A_13_20_A2.a2dp_sink"
+HEADPHONES="alsa_output.usb-Yamaha_Corporation_Steinberg_UR22C-00.analog-stereo"
+AIRPODS="bluez_output.14_87_6A_13_20_A2.a2dp_sink"
 SONOS="speakerssonosonemediarenderer_dlna"
 
 notify-send \
@@ -13,4 +13,4 @@ notify-send \
 	--icon "$ICON" \
 	-t 3000
 
-pacmd set-default-sink "$HEADPHONES"
+pactl set-default-sink "$HEADPHONES"

@@ -4,7 +4,7 @@ HEADER="Pulse Helper"
 ICON="$HOME/.bin/speaker.svg"
 
 HEADPHONES="alsa_output.pci-0000_08_00.6.analog-stereo"
-AIRPODS="bluez_sink.14_87_6A_13_20_A2.a2dp_sink"
+AIRPODS="bluez_output.90_9C_4A_DF_AC_99.a2dp-sink"
 SONOS="speakerssonosonemediarenderer_dlna"
 
 notify-send \
@@ -13,4 +13,4 @@ notify-send \
 	--icon "$ICON" \
 	-t 3000
 
-pacmd set-default-sink "$AIRPODS"
+pactl set-default-sink "$AIRPODS"
