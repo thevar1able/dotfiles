@@ -7,7 +7,7 @@ theme.useless_gap = 3
 -- }}}
 
 -- {{{ Styles
-theme.font      = "sans 8"
+theme.font      = "PragmataPro Mono 10"
 
 -- {{{ Colors
 theme.fg_normal  = "#BFBFBF" --"#DCDCCC"
