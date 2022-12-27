@@ -1,6 +1,7 @@
 [user]
-	name = Konstantin Bogdnaov
-	email = konstantin-b@yandex-team.ru
+	name = Konstantin Bogdanov
+	email = var1able@var1able.ru
+        signingkey = 32217A73EB950E9EE55036A3DB399448D9FE52F1
 
 [core]
 	excludesfile = /home/thevar1able/.gitignore_global
@@ -11,9 +12,8 @@
 	process = git-lfs filter-process
 	required = true
 
-[url "git://github.com/"]
-	insteadOf = https://github.com/
-
 [pull]
 	ff = only
 
+[commit]
+    gpgsign = true
