@@ -27,6 +27,9 @@ fi
 # load private environment variables
 [ -f ~/.profile-private ] && source ~/.profile-private
 
+# Rootless Docker
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+
 # start Xorg if there is no session and we're on tty1
 if [ -z "$DISPLAY" ] && [ -z "$TMUX" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
     echo "Starting X server"
