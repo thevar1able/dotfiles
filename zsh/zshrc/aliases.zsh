@@ -2,7 +2,7 @@
 alias ssh="TERM=xterm-256color ssh"
 
 mp4convert() {
-  ffmpeg -i "${1}" -c:v h264_videotoolbox -c:a aac "${1}.mp4"
+  ffmpeg -i "${1}" -c:a aac "${1}.mp4"
 }
 
 cheat() {
