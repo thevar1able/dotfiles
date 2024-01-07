@@ -45,7 +45,7 @@ export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 # export WLR_NO_HARDWARE_CURSORS=1
 
 # start Xorg if there is no session and we're on tty1
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+if [ -z "$DISPLAY" ] && [ -z "$TMUX" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
     echo "Starting X server"
     exec startx
 fi

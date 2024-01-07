@@ -27,8 +27,14 @@ plugins=(
   fzf
   ripgrep
   aws
+  tmux
 )
 
+if [ "$TERMINAL_EMULATOR" != "JetBrains-JediTerm" ]; then
+    ZSH_TMUX_AUTOSTART=true
+    ZSH_TMUX_AUTOCONNECT=false
+fi
+ZSH_TMUX_CONFIG="$HOME/.config/tmux/tmux.conf"
 
 # load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
