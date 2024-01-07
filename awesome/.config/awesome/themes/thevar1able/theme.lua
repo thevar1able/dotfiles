@@ -2,7 +2,7 @@ local beautiful = require("beautiful")
 
 -- {{{ Main
 theme = {}
-theme.wallpaper = beautiful.theme_path .. "/onecolor.png"
+theme.wallpaper = beautiful.theme_path .. "/background_ryo.jpg"
 theme.useless_gap = 3
 -- }}}
 
