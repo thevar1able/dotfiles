@@ -39,6 +39,8 @@ revert() {
     xset dpms 0 0 0
 }
 
+pidof i3lock && exit
+
 trap revert HUP INT TERM
 
 xset +dpms dpms 15 15 15
