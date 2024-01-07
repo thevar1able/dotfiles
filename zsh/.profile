@@ -7,9 +7,9 @@ export PATH="$HOME/.bin:$PATH"
 systemctl --user import-environment PATH
 
 # default applications
-export TERMINAL=st
-export TERM=st-256color
-export EDITOR=nvim  # "subl3 -nw"
+export TERMINAL=alacritty
+export TERM=xterm-256color
+export EDITOR=nvim
 
 # -x4 = Set tab stops to 4 spaces.
 # -F = Don't open with less if entire file fits on screen.
