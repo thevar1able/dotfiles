@@ -17,3 +17,6 @@
 
 [commit]
 	gpgsign = true
+
+[url "git@git.var1able.network:"]
+	insteadOf = https://git.var1able.network/
