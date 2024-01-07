@@ -68,6 +68,8 @@ sources=(
   # hook for long jobs
   ./.dotfiles/zsh/plugins/zlong_alert.zsh/zlong_alert.zsh
 
+  ./.dotfiles/zsh/plugins/zsh-syntax-highlighting/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
+
   # fish-like syntax highlighting
   # requires 'zsh-syntax-highlighting' package
   /usr/share/{,zsh/plugins}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

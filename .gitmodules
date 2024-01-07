@@ -7,3 +7,6 @@
 [submodule "zsh/plugins/zlong_alert.zsh"]
 	path = zsh/plugins/zlong_alert.zsh
 	url = https://github.com/kevinywlui/zlong_alert.zsh
+[submodule "zsh/plugins/zsh-syntax-highlighting"]
+	path = zsh/plugins/zsh-syntax-highlighting
+	url = https://github.com/catppuccin/zsh-syntax-highlighting/
