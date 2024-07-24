@@ -66,8 +66,81 @@ require('lazy').setup({
   'numToStr/Comment.nvim', -- "gc" to comment visual regions/lines
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
+  -- Debugger
+  {
+    "andrewferrier/debugprint.nvim",
+    keys = {
+        { "g?", mode = 'n' },
+        { "g?", mode = 'x' },
+    },
+    cmd = {
+        "ToggleCommentDebugPrints",
+        "DeleteDebugPrints",
+    },
+  },
+
   -- Copilot
-  'github/copilot.vim',
+  'zbirenbaum/copilot.lua',
+  {
+    'zbirenbaum/copilot-cmp',
+    after = { 'copilot.lua' },
+    config = function()
+      require('copilot_cmp').setup()
+    end,
+  },
+
+  -- ChatGPT
+  {
+    'Robitx/gp.nvim',
+    config = function()
+      local default_chat_system_prompt = "You are a general AI assistant.\n\n"
+        .. "The user provided the additional info about how they would like you to respond:\n\n"
+        .. "- If you're unsure don't guess and say you don't know instead.\n"
+        .. "- Ask question if you need clarification to provide better answer.\n"
+        .. "- Think deeply and carefully from first principles step by step.\n"
+        .. "- Zoom out first to see the big picture and then zoom in to details.\n"
+        .. "- Use Socratic method to improve your thinking and coding skills.\n"
+        .. "- Don't elide any code from your output if the answer requires coding.\n"
+        .. "- Take a deep breath; You've got this!\n"
+
+      local default_code_system_prompt = "You are an AI working as a code editor.\n\n"
+        .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
+        .. "START AND END YOUR ANSWER WITH:\n\n```"
+      local conf = {
+        openai_api_key = "sk-XXXXXXXX",
+
+        providers = {
+          openai = {
+            disable = true,
+          }, 
+          copilot = {
+            endpoint = "https://api.githubcopilot.com/chat/completions",
+            secret = {
+              "bash",
+              "-c",
+              "cat ~/.config/github-copilot/hosts.json | sed -e 's/.*oauth_token...//;s/\".*//'",
+            },
+          },
+        },
+        agents = {
+          {
+            name = "ChatGPT3-5",
+            disable = true,
+          },
+          {
+            name = "Copilot",
+            provider = "copilot",
+            disable = false,
+            chat = true,
+            command = true,
+            model = { model = "gpt-4-turbo" },
+            system_prompt = default_chat_system_prompt,
+          }
+        },
+      }
+      require('gp').setup(conf)
+    end,
+  },
 
   -- Fuzzy Finder (files, lsp, etc)
   'junegunn/fzf.vim',
@@ -140,6 +213,7 @@ require('lualine').setup {
 
 -- Enable Comment.nvim
 require('Comment').setup()
+require('debugprint').setup()
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -416,8 +490,11 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
+    { name = 'copilot' },
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'buffer' },
+    { name = 'path' },
   },
 }
 
