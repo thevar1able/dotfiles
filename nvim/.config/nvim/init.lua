@@ -18,10 +18,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
-require('lazy').setup({
-  -- Package manager
-  'wbthomason/packer.nvim',
 
+require('lazy').setup({
   { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
@@ -30,7 +28,7 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
 
       -- Useful status updates for LSP
-     { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
 
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
@@ -107,17 +105,33 @@ vim.wo.signcolumn = 'yes'
 vim.cmd [[set noshowmode]]
 
 -- Set colorscheme
--- vim.o.termguicolors = true
+vim.o.termguicolors = true
 vim.cmd [[colorscheme kanagawa-dragon]]
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
 
+-- Disable comments on newline
+vim.cmd [[set formatoptions-=cro]]
+
+-- Explicitly disable Copilot on everything except Go and Python
+require('copilot').setup({
+  suggestion = { enabled = false },
+  panel = { enabled = false },
+  filetypes = {
+    go = true,
+    python = true,
+    lua = true,
+    cpp = true,
+    ["*"] = false,
+  },
+})
+
 -- Set lualine as statusline
 -- See `:help lualine.txt`
 require('lualine').setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = 'seoul256',
     component_separators = '|',
     section_separators = '',
@@ -310,7 +324,8 @@ local servers = {
   yamlls = {
     yaml = {
       schemas = {
-        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.yaml",
+        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] =
+        "/*.yaml",
         ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
       }
     },
@@ -350,7 +365,7 @@ mason_lspconfig.setup_handlers {
           "--header-insertion=iwyu"
         },
       }
-    else 
+    else
       require('lspconfig')[server_name].setup {
         capabilities = capabilities,
         on_attach = on_attach,
